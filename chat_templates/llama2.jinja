@@ -1,0 +1,1 @@
+{% set loop_messages = messages %}{% for message in loop_messages %}{% if message['role'] == 'system' %}<s>[INST] <<SYS>>\n{{ message['content'] | trim }}\n<</SYS>>\n\n{% elif message['role'] == 'user' %}[INST] {{ message['content'] | trim }} [/INST]{% elif message['role'] == 'assistant' %} {{ message['content'] | trim }} </s>{% endif %}{% endfor %}
