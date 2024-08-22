@@ -58,3 +58,10 @@ streamlit run app.py
 - [x] reset chat
 - [ ] control prompt template
     - [ ] be able to toggle between raw inputs vs templated response
+     
+# References
+
+- [vLLM Quickstart](https://docs.vllm.ai/en/latest/getting_started/quickstart.html)
+- [vLLM OpenAI compatible server](https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html)
+- [Streamlit ChatGPT style app](https://docs.streamlit.io/develop/tutorials/llms/build-conversational-apps#build-a-chatgpt-like-app)
+- [vLLM max LoRA rank issue](https://github.com/vllm-project/vllm/issues/2847)
