@@ -31,8 +31,9 @@ pip install -r requirements.txt
 # optionally append the jinja template if needed
 vllm serve /network/weights/llama.var/llama2/Llama-2-7b-chat-hf/ --port 8899 --chat-template ./chat_templates/llama2_v2.jinja
 
-# you can also include LoRA adaptors if you want; must be in NAME=PATH format, can include >1 
-vllm serve <LLM_PATH_NAME> --enable-lora --lora-modules <SOME_NAME>=<PATH_TO_ADAPTOR> --port 8899
+# you can also include LoRA adaptors if you want; must be in NAME=PATH format, can include >1.
+# note that the max supported LoRA rank at the time of writing is 64
+vllm serve <LLM_PATH_NAME> --enable-lora --lora-modules <SOME_NAME>=<PATH_TO_ADAPTOR> --port 8899 --max-lora-rank 64
 ```
 
 
