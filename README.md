@@ -37,7 +37,7 @@ vllm serve <LLM_PATH_NAME> --enable-lora --lora-modules <SOME_NAME>=<PATH_TO_ADA
 ```
 
 
-2. Local port forwarding if necessary:
+2. Local port forwarding if necessary (this is for the Mila slurm managed cluster, going from login -> worker nodes):
 
 ```bash
 ssh -t -t mila -L 8899:localhost:8899 ssh USER@NODE -L 8899:localhost:8899
