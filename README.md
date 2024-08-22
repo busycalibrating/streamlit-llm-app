@@ -30,7 +30,11 @@ pip install -r requirements.txt
 ```bash
 # optionally append the jinja template if needed
 vllm serve /network/weights/llama.var/llama2/Llama-2-7b-chat-hf/ --port 8899 --chat-template ./chat_templates/llama2_v2.jinja
+
+# you can also include LoRA adaptors if you want; must be in NAME=PATH format, can include >1 
+vllm serve <LLM_PATH_NAME> --enable-lora --lora-modules <SOME_NAME>=<PATH_TO_ADAPTOR> --port 8899
 ```
+
 
 2. Local port forwarding if necessary:
 
@@ -38,4 +42,18 @@ vllm serve /network/weights/llama.var/llama2/Llama-2-7b-chat-hf/ --port 8899 --c
 ssh -t -t mila -L 8899:localhost:8899 ssh USER@NODE -L 8899:localhost:8899
 ```
 
-3. Profit
+3. Profit; run app locally
+
+```bash
+streamlit run app.py
+```
+
+# Features
+
+- [x] select model
+- [x] query hparams 
+    - [x] Max tokens
+    - [x] temperature   
+- [?] reset chat  -> f5 lol
+- [ ] control prompt template
+    - [ ] be able to toggle between raw inputs vs templated response

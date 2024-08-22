@@ -23,6 +23,14 @@ def parse_args():
         # so we have to do a hard exit.
         os._exit(e.code)
 
+
+def reset_conversation():
+    st.session_state.conversation = None
+    st.session_state.chat_history = None
+    st.session_state.messages = []
+    logger.debug("Reset chat history")
+
+
 args = parse_args()
 
 st.title("ChatGPT-like client")
@@ -33,14 +41,6 @@ all_model_ids = [model.id for model in client.models.list()]
 logger.info(all_model_ids)
 
 with st.sidebar:
-    # TODO:
-    #   [x] select model
-    #   [x] query hparams 
-    #       [x] Max tokens
-    #       [x] temperature   
-    #   [?] reset chat  -> f5 lol
-    #   [ ] control prompt template
-    #       [ ] be able to toggle between raw inputs vs templated response
     log_level = st.selectbox('Logging verbosity', options=list(LOG_LEVELS.keys()), format_func=lambda x: LOG_LEVELS[x])
     logger.setLevel(level=log_level)
 
@@ -57,6 +57,8 @@ with st.sidebar:
     system_prompt = st.text_area("System Prompt", value=None)
     logger.info("System prompt: %s", system_prompt)
     st.session_state['system_prompt'] = system_prompt
+
+    st.button('Reset Chat', on_click=reset_conversation)
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
