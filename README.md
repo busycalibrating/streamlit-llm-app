@@ -55,6 +55,6 @@ streamlit run app.py
 - [x] query hparams 
     - [x] Max tokens
     - [x] temperature   
-- [?] reset chat  -> f5 lol
+- [x] reset chat
 - [ ] control prompt template
     - [ ] be able to toggle between raw inputs vs templated response
