@@ -7,20 +7,21 @@ A minimal Streamlit app to interface with vLLM and arbitrary (supported) models.
 Follow the instructions to setup vLLM (make sure you use the right CUDA module if necessary):
 
 ```bash
-module load cuda/12.1.1
+module load python/3.10 cuda/12.4.1
 
-# (Recommended) Create a new conda environment.
-conda create -n vllm python=3.10 -y
-conda activate vllm
+virtualenv venv
+source venv/bin/activate
+pip install uv
 
-# Install vLLM with CUDA 12.1.
-pip install vllm
+# Install vLLM with CUDA 12.1. (12.4.1?)
+uv pip install -e .
 ```
 
 Then install the requirements
 
 ```bash
-pip install -r requirements.txt
+# Install vLLM with CUDA 12.1. (12.4.1?)
+uv pip install -e .[all]
 ```
 
 ## Usage
@@ -34,6 +35,9 @@ vllm serve /network/weights/llama.var/llama2/Llama-2-7b-chat-hf/ --port 8899 --c
 # you can also include LoRA adaptors if you want; must be in NAME=PATH format, can include >1.
 # note that the max supported LoRA rank at the time of writing is 64
 vllm serve <LLM_PATH_NAME> --enable-lora --lora-modules <SOME_NAME>=<PATH_TO_ADAPTOR> --port 8899 --max-lora-rank 64
+
+# if you're serving a judge model, you don't necessarily need a large KV-cache; limit gpu memory utilization:
+vllm serve cais/HarmBench-Llama-2-13b-cls --port 8894 --dtype bfloat16 --gpu-memory-utilization 0.5
 ```
 
 

@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "streamlit_llm_app"
+version = "0.0.1"
+description = ""
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.9"
+# [tool.pyproj.dependencies]
+# python = "^3.10"
+# torch = { version = "1.12.1+cu113", source = "https://download.pytorch.org/whl/cu113" }
+# transformers = "4.21.1"
+
+dependencies = [
+    "fire",
+    "streamlit",
+    "openai",
+]
+
+[project.optional-dependencies]
+# Define extras here
+serving = [
+    "vllm",
+    "torch==2.5.1",
+    "transformers==4.46.1",
+    "pandas",
+    "accelerate==1.1.1",
+    "peft",
+    "jaxtyping",
+    "einops",
+    "plotly",
+    "seaborn",
+    "ipykernel",
+    "nbformat>=4.2.0",
+]
+
+[tool.setuptools]
+packages = ["llm_apps"]
+
+# [project.urls]
+# Homepage = "https://github.com/busycalibrating/redflag_llm"
