@@ -22,6 +22,10 @@ dependencies = [
     "fire",
     "streamlit",
     "openai",
+    "pandas",
+    "plotly",
+    "seaborn",
+    "ipykernel",
 ]
 
 [project.optional-dependencies]
@@ -30,14 +34,10 @@ serving = [
     "vllm",
     "torch==2.5.1",
     "transformers==4.46.1",
-    "pandas",
     "accelerate==1.1.1",
     "peft",
     "jaxtyping",
     "einops",
-    "plotly",
-    "seaborn",
-    "ipykernel",
     "nbformat>=4.2.0",
 ]
 
