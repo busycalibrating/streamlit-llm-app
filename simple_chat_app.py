@@ -31,6 +31,11 @@ def reset_conversation():
     logger.debug("Reset chat history")
 
 
+def delete_last_msg():
+    logger.debug("Delete last message")
+    st.session_state.messages.pop()
+
+
 args = parse_args()
 
 st.title("ChatGPT-like client")
@@ -58,7 +63,9 @@ with st.sidebar:
     logger.info("System prompt: %s", system_prompt)
     st.session_state['system_prompt'] = system_prompt
 
-    st.button('Reset Chat', on_click=reset_conversation)
+    col1, col2 = st.columns(2)
+    col1.button('Reset Chat', on_click=reset_conversation)
+    col2.button('Delete Last Message', on_click=delete_last_msg)
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
